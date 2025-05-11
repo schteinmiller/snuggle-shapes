@@ -1,81 +1,93 @@
+/* Основные стили страницы */
 body {
     font-family: Arial, sans-serif;
     display: flex;
-    justify-content: center;
+    justify-content: center;  /* Центрирование содержимого по горизонтали */
     padding: 20px;
-    background-color: #f5f5f5;
+    background-color: #f5f5f5; /* Светло-серый фон страницы */
 }
 
+/* Основной контейнер приложения */
 .container {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-    max-width: 500px;
+    flex-direction: column;   /* Элементы располагаются вертикально */
+    align-items: center;      /* Центрирование элементов по горизонтали */
+    gap: 20px;                /* Отступ между элементами */
+    max-width: 500px;         /* Ограничение максимальной ширины */
 }
 
+/* Стиль заголовка */
 h1 {
     margin: 0;
     color: #333;
 }
 
+/* Контейнер для SVG-холста */
 .canvas-container {
     width: 480px;
     height: 480px;
-    border: 2px solid #333;
-    background-color: #fff;
+    border: 2px solid #333;  /* Рамка вокруг холста */
+    background-color: #fff;  /* Белый фон холста */
 }
 
+/* Стиль для SVG-элемента */
 #pattern-canvas {
     width: 100%;
     height: 100%;
 }
 
+/* Контейнер для элементов управления */
 .controls {
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 15px;  /* Отступ между элементами управления */
 }
 
+/* Блок управления размером фигур */
 .size-control {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 8px;  /* Отступ между заголовком и ползунком */
 }
 
+/* Контейнер для ползунка и подписей */
 .slider-container {
     display: flex;
-    align-items: center;
-    gap: 10px;
+    align-items: center;  /* Выравнивание элементов по центру */
+    gap: 10px;            /* Отступ между элементами */
 }
 
+/* Стиль для подписей к ползунку (Одинаковый/Случайный) */
 .slider-label {
     font-size: 14px;
     color: #666;
-    width: 80px;
+    width: 80px;  /* Фиксированная ширина для выравнивания */
 }
 
+/* Стиль для ползунка регулировки размера */
 #size-slider {
-    flex-grow: 1;
-    height: 5px;
-    -webkit-appearance: none;
-    appearance: none;
-    background: #ddd;
-    border-radius: 5px;
-    outline: none;
+    flex-grow: 1;         /* Занимает всё доступное пространство */
+    height: 5px;          /* Высота линии ползунка */
+    -webkit-appearance: none;  /* Убираем стандартный стиль для Chrome/Safari */
+    appearance: none;          /* Убираем стандартный стиль */
+    background: #ddd;          /* Цвет фона ползунка */
+    border-radius: 5px;        /* Скругление углов */
+    outline: none;             /* Убираем обводку при фокусе */
 }
 
+/* Стиль для ручки ползунка в Chrome/Safari */
 #size-slider::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
-    width: 18px;
-    height: 18px;
-    border-radius: 50%;
-    background: #007bff;
-    cursor: pointer;
+    width: 18px;           /* Ширина ручки */
+    height: 18px;          /* Высота ручки */
+    border-radius: 50%;    /* Круглая форма ручки */
+    background: #007bff;   /* Синий цвет ручки */
+    cursor: pointer;       /* Курсор в виде указателя при наведении */
 }
 
+/* Стиль для ручки ползунка в Firefox */
 #size-slider::-moz-range-thumb {
     width: 18px;
     height: 18px;
@@ -84,37 +96,42 @@ h1 {
     cursor: pointer;
 }
 
+/* Общий стиль для кнопок */
 button {
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
+    padding: 10px 20px;     /* Внутренние отступы */
+    background-color: #007bff;  /* Синий фон */
+    color: white;            /* Белый текст */
+    border: none;            /* Без рамки */
+    border-radius: 5px;      /* Скругление углов */
+    cursor: pointer;         /* Курсор в виде указателя */
+    font-size: 16px;         /* Размер шрифта */
 }
 
+/* Стиль кнопки при наведении */
 button:hover {
-    background-color: #0056b3;
+    background-color: #0056b3;  /* Более тёмный оттенок синего */
 }
 
+/* Контейнер для блока экспорта SVG */
 #export-container {
     width: 100%;
-    display: none;
+    display: none;          /* По умолчанию скрыт */
     flex-direction: column;
     gap: 10px;
 }
 
+/* Текстовое поле для SVG-кода */
 #export-code {
     width: 100%;
     height: 200px;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    font-family: monospace;
-    resize: vertical;
+    font-family: monospace;  /* Моноширинный шрифт для кода */
+    resize: vertical;        /* Разрешаем изменение размера по вертикали */
 }
 
+/* Кнопка копирования кода */
 #copy-btn {
-    align-self: flex-start;
+    align-self: flex-start;  /* Выравнивание по левому краю */
 }
