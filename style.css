@@ -1,11 +1,222 @@
-body {
-  font-family: sans-serif;
-  text-align: center;
-  padding: 2rem;
-  background: #fdfdfd;
+/* Общие стили */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
-svg {
-  border: 2px dashed #ccc;
-  margin-bottom: 1rem;
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: #f5f5f5;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+    max-width: 800px;
+}
+
+/* Заголовок */
+.title {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+    text-align: center;
+}
+
+/* Селектор фигур */
+.shape-selector {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.shape-btn {
+    width: 60px;
+    height: 60px;
+    border: 2px solid #ccc;
+    background-color: white;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 5px;
+    transition: all 0.2s ease;
+}
+
+.shape-btn:hover {
+    transform: scale(1.05);
+    border-color: #999;
+}
+
+.shape-btn.active {
+    border-color: #007bff;
+    background-color: #e6f2ff;
+    transform: scale(1.1);
+}
+
+.shape-btn svg {
+    width: 100%;
+    height: 100%;
+}
+
+.shape-btn svg path {
+    fill: #333;
+}
+
+/* Область холста */
+.canvas-container {
+    position: relative;
+    width: 480px;
+    height: 480px;
+    border: 2px solid #333;
+    background-color: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+#pattern-canvas {
+    width: 100%;
+    height: 100%;
+    background-color: #f9f9f9;
+}
+
+/* Панель управления */
+.controls {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.params {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.param-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+label {
+    font-size: 14px;
+    color: #333;
+    font-weight: bold;
+}
+
+input, select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100px;
+}
+
+.actions {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+button {
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.2s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+#clear-btn {
+    background-color: #dc3545;
+}
+
+#clear-btn:hover {
+    background-color: #c82333;
+}
+
+#export-btn {
+    background-color: #28a745;
+}
+
+#export-btn:hover {
+    background-color: #218838;
+}
+
+/* Контейнер для экспорта */
+#export-container {
+    width: 100%;
+    display: none;
+    margin-top: 20px;
+    flex-direction: column;
+    gap: 10px;
+    background-color: #f8f8f8;
+    padding: 15px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+#export-container h3 {
+    font-size: 18px;
+    color: #333;
+}
+
+#export-code {
+    width: 100%;
+    height: 200px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-family: monospace;
+    background-color: #fff;
+    resize: vertical;
+    font-size: 14px;
+}
+
+#copy-btn {
+    align-self: flex-start;
+}
+
+/* Адаптивные стили */
+@media (max-width: 600px) {
+    .canvas-container {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 1/1;
+    }
+    
+    .params {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .param-group {
+        width: 100%;
+        max-width: 200px;
+    }
+    
+    input, select {
+        width: 100%;
+    }
 }
