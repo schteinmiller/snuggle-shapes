@@ -31,6 +31,59 @@ h1 {
     height: 100%;
 }
 
+.controls {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.size-control {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.slider-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.slider-label {
+    font-size: 14px;
+    color: #666;
+    width: 80px;
+}
+
+#size-slider {
+    flex-grow: 1;
+    height: 5px;
+    -webkit-appearance: none;
+    appearance: none;
+    background: #ddd;
+    border-radius: 5px;
+    outline: none;
+}
+
+#size-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #007bff;
+    cursor: pointer;
+}
+
+#size-slider::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #007bff;
+    cursor: pointer;
+}
+
 button {
     padding: 10px 20px;
     background-color: #007bff;
