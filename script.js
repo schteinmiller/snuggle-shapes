@@ -1,9 +1,11 @@
 // DOM элементы
 const canvas = document.getElementById('pattern-canvas');
+const generateBtn = document.getElementById('generate-btn');
 const exportBtn = document.getElementById('export-btn');
 const exportContainer = document.getElementById('export-container');
 const exportCode = document.getElementById('export-code');
 const copyBtn = document.getElementById('copy-btn');
+const sizeSlider = document.getElementById('size-slider');
 
 // Массив для хранения созданных фигур
 let shapes = [];
@@ -11,14 +13,23 @@ let shapes = [];
 // Массив доступных фигур
 const shapeIds = ['shape-0', 'shape-I', 'shape-J', 'shape-O', 'shape-U'];
 
+// Базовый размер для фигур одинакового размера
+const baseSize = 70;
+
+// Диапазон размеров для случайных фигур
+const minSize = 40;
+const maxSize = 100;
+
 // Инициализация при загрузке страницы
 document.addEventListener('DOMContentLoaded', () => {
     // Генерируем паттерн при загрузке страницы
     generatePattern();
     
     // Обработчики событий
+    generateBtn.addEventListener('click', generatePattern);
     exportBtn.addEventListener('click', exportSVG);
     copyBtn.addEventListener('click', copyToClipboard);
+    sizeSlider.addEventListener('input', generatePattern);
 });
 
 // Генерация паттерна с 5 фигурами
@@ -26,10 +37,13 @@ function generatePattern() {
     // Очищаем холст перед генерацией
     clearCanvas();
     
+    // Получаем значение ползунка размера (0-100)
+    const sizeVariation = sizeSlider.value;
+    
     // Генерируем 5 фигур
     for (let i = 0; i < 5; i++) {
         // Создаем фигуру со случайными параметрами
-        const shape = createRandomShape();
+        const shape = createShape(sizeVariation);
         shapes.push(shape);
         
         // Добавляем фигуру на холст
@@ -37,8 +51,8 @@ function generatePattern() {
     }
 }
 
-// Создание случайной фигуры
-function createRandomShape() {
+// Создание фигуры с учётом настройки размера
+function createShape(sizeVariation) {
     // Создаем элемент использования символа
     const useElement = document.createElementNS('http://www.w3.org/2000/svg', 'use');
     
@@ -53,8 +67,23 @@ function createRandomShape() {
     const x = Math.floor(Math.random() * 400);
     const y = Math.floor(Math.random() * 400);
     
-    // Определяем случайный размер (от 40 до 100px)
-    const size = Math.floor(Math.random() * 60) + 40;
+    // Определяем размер в зависимости от значения ползунка
+    // 0 = все одинакового размера, 100 = полностью случайные размеры
+    let size;
+    if (sizeVariation == 0) {
+        // Одинаковый размер для всех фигур
+        size = baseSize;
+    } else if (sizeVariation == 100) {
+        // Полностью случайный размер
+        size = Math.floor(Math.random() * (maxSize - minSize)) + minSize;
+    } else {
+        // Промежуточное значение - ограниченная вариативность размера
+        // Чем ближе к 0, тем ближе к baseSize
+        const variation = (maxSize - minSize) * (sizeVariation / 100);
+        const minAllowedSize = Math.max(minSize, baseSize - variation/2);
+        const maxAllowedSize = Math.min(maxSize, baseSize + variation/2);
+        size = Math.floor(Math.random() * (maxAllowedSize - minAllowedSize)) + minAllowedSize;
+    }
     
     // Устанавливаем положение и размер
     useElement.setAttribute('x', x);
