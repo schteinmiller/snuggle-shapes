@@ -34,7 +34,18 @@
             </svg>
         </div>
         
-        <button id="export-btn">Экспорт SVG</button>
+        <div class="controls">
+            <div class="size-control">
+                <span>Размер фигур:</span>
+                <div class="slider-container">
+                    <span class="slider-label">Одинаковый</span>
+                    <input type="range" id="size-slider" min="0" max="100" value="100">
+                    <span class="slider-label">Случайный</span>
+                </div>
+            </div>
+            <button id="generate-btn">Новый паттерн</button>
+            <button id="export-btn">Экспорт SVG</button>
+        </div>
         
         <div id="export-container">
             <textarea id="export-code" readonly></textarea>
