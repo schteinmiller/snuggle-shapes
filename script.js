@@ -1,5 +1,3 @@
-/2})`);
-    
     // Генерируем случайный цвет
     const color = getRandomColor();
     useElement.setAttribute('fill', color);
